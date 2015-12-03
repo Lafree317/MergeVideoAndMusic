@@ -1,117 +1,22 @@
-# MergeVideoAndMusic
-音视频合成
-# 前言
----
-遍历构造器又称工厂方法,可以把一个或多个控件封装到一个类中,每次创建控件只需要调用方法就可以了
+#前言
+####因为最近做项目有遇到音视频合成的需求,但是网上的教程某些地方总是写的很模糊,所以自己调研完成之后决定写一篇博客分享出来,供大家一起学习进步
 
-本次我所说的就是封装一个根据所输入的数组进行自动创建提示框的类
-
-# 效果图:
-![这里写图片描述](http://img.blog.csdn.net/20151202152809474)
-![这里写图片描述](http://img.blog.csdn.net/20151202152822475)
-
+####音视频主要是利用AVFoundation框架下的AVMutableComposition来合成音视频.
+####在AVMutableComposition中传入两个数据流,一个是音频一个是视频,之后调用合成方法就可以了
 ---
 #上代码
+##storyBoard中拖入一个button,一个imageView
+![这里写图片描述](http://img.blog.csdn.net/20151203134609345)
+##为了效果好可以将IamgeView的背景色调为黑色
 
-##首先创建一个CustomAlertView的类,该类继承自NSobject
-
-![这里写图片描述](http://img.blog.csdn.net/20151202153833787)
-
-##然后在CustomAlertView.h中写上方法声明,因为是继承自NSobject所以要手动导入UIKit框架
-
-```
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-// 代理方法
-@protocol CustomAlertViewDelegate <NSObject>
-
-// 可选执行方法
-@optional
-// 点击按钮下标时传递参数
-- (void)didSelectAlertButton:(NSString *)title;
-@end
-
-@interface CustomAlertView : NSObject
-/** 单例 */
-+ (CustomAlertView *)singleClass;
-
-/** 快速创建提示框*/
-- (UIView *)quickAlertViewWithArray:(NSArray *)array;
-
-// 代理属性
-@property (assign, nonatomic)id<CustomAlertViewDelegate>delegate;
-
-@end
-```
-##然后在CustomAlertView.h.m中开始实现方法
-```
-#import "CustomAlertView.h"
-
-/** 二进制码转RGB */
-#define UIColorFromRGBValue(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-@implementation CustomAlertView
-/** 单例 */
-+ (CustomAlertView *)singleClass{
-    static CustomAlertView *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[CustomAlertView alloc] init];
-    });
-    return manager;
-}
-/** 提示view */
-- (UIView *)quickAlertViewWithArray:(NSArray *)array{
-    CGFloat buttonH = 61;
-    CGFloat buttonW = 250;
-
-    // 通过数组长度创建view的高
-    UIView *alert = [[UIView alloc] initWithFrame:CGRectMake(0, 0,buttonW, array.count * buttonH)];
-    for (int i = 0; i < array.count;i++) {
-        // 因为有一条分割线 所以最下面是一层view
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, i*buttonH, buttonW, buttonH)];
-        view.backgroundColor = [UIColor whiteColor];
-        
-        // 创建button
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0, 0, buttonW, buttonH);
-        [button setTitle:array[i] forState:(UIControlStateNormal)];
-        // 所有button都关联一个点击方法,通过按钮上的title做区分
-        [button addTarget:self action:@selector(alertAction:) forControlEvents:(UIControlEventTouchUpInside)];
-        [view addSubview:button];
-        
-        // 这里可以根据传值改变状态
-        if ([array[i] isEqualToString:@"取消"]) {
-            button.tintColor = [UIColor whiteColor];
-            // 绿色背景
-            view.backgroundColor = UIColorFromRGBValue(0x82DFB0);
-        }else{
-            button.tintColor = UIColorFromRGBValue(0x333333);
-            // 分割线
-            // 如果不是最后一行
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, buttonW, 1)];
-            lineView.backgroundColor = UIColorFromRGBValue(0xefefef);
-            [view addSubview:lineView];
-        }
-        [alert addSubview:view];
-    }
-    return alert;
-}
-/** button点击事件,通知代理执行代理方法 */
-- (void)alertAction:(UIButton *)button{
-    [_delegate didSelectAlertButton:button.titleLabel.text];
-}
-@end
-```
-
-##ViewController中调用
+##然后在ViewController中添加以下代码
 ```
 #import "ViewController.h"
-#import "CustomAlertView.h"
-
-@interface ViewController ()<CustomAlertViewDelegate>
-/** 提示框 */
-@property (strong, nonatomic) UIView *alertView;
+#import <AVFoundation/AVFoundation.h>
+#import "MBProgressHUD+MJ.h"
+@interface ViewController ()
+/** 用于播放 */
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -119,68 +24,111 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor lightGrayColor];
-    // 将提示页面加入到view上
-    [self.view addSubview:self.alertView];
+
 }
 
-// 这个是stroyBoard里创建的button
-- (IBAction)alertAction:(UIButton *)sender {
-    // UIView动画
-    [UIView animateWithDuration:0.1 animations:^{
-        self.alertView.alpha = 1;
-        self.alertView.hidden = NO;
+- (IBAction)mergeAction:(UIButton *)sender {
+    [self merge];
+}
+// 混合音乐
+- (void)merge{
+    // mbp提示框
+    [MBProgressHUD showMessage:@"正在处理中"];
+    // 路径
+    NSString *documents = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    // 声音来源
+    NSURL *audioInputUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"五环之歌" ofType:@"mp3"]];
+    // 视频来源
+    NSURL *videoInputUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"myPlayer" ofType:@"mp4"]];
+
+    // 最终合成输出路径
+    NSString *outPutFilePath = [documents stringByAppendingPathComponent:@"merge.mp4"];
+    // 添加合成路径
+    NSURL *outputFileUrl = [NSURL fileURLWithPath:outPutFilePath];
+    // 时间起点
+    CMTime nextClistartTime = kCMTimeZero;
+    // 创建可变的音视频组合
+    AVMutableComposition *comosition = [AVMutableComposition composition];
+    
+    
+    // 视频采集
+    AVURLAsset *videoAsset = [[AVURLAsset alloc] initWithURL:videoInputUrl options:nil];
+    // 视频时间范围
+    CMTimeRange videoTimeRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+    // 视频通道 枚举 kCMPersistentTrackID_Invalid = 0
+    AVMutableCompositionTrack *videoTrack = [comosition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    // 视频采集通道
+    AVAssetTrack *videoAssetTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] firstObject];
+    //  把采集轨道数据加入到可变轨道之中
+    [videoTrack insertTimeRange:videoTimeRange ofTrack:videoAssetTrack atTime:nextClistartTime error:nil];
+    
+    
+   
+    // 声音采集
+    AVURLAsset *audioAsset = [[AVURLAsset alloc] initWithURL:audioInputUrl options:nil];
+    // 因为视频短这里就直接用视频长度了,如果自动化需要自己写判断
+    CMTimeRange audioTimeRange = videoTimeRange;
+    // 音频通道
+    AVMutableCompositionTrack *audioTrack = [comosition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    // 音频采集通道
+    AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+    // 加入合成轨道之中
+    [audioTrack insertTimeRange:audioTimeRange ofTrack:audioAssetTrack atTime:nextClistartTime error:nil];
+    
+    // 创建一个输出
+    AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:comosition presetName:AVAssetExportPresetMediumQuality];
+    // 输出类型
+    assetExport.outputFileType = AVFileTypeQuickTimeMovie;
+    // 输出地址
+    assetExport.outputURL = outputFileUrl;
+    // 优化
+    assetExport.shouldOptimizeForNetworkUse = YES;
+    // 合成完毕
+    [assetExport exportAsynchronouslyWithCompletionHandler:^{
+        // 回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 调用播放方法
+            [self playWithUrl:outputFileUrl];
+        });
     }];
 }
 
-/** 提示框懒加载 */
-- (UIView *)alertView{
-    if (!_alertView) {
-        // 这里还可以把alerView创建到一个蒙版上,直接进行操作蒙版的透明度隐藏来展示动画,也可以避免点击框外的其他控件,就不在这里细写了
-        // 赋值
-        _alertView = [[CustomAlertView singleClass]
-                      // 传入数组
-                      quickAlertViewWithArray:@[@"确定",@"测试A",@"测试B",@"取消"]
-                      ];
-        
-        // 设定中心,如果需要适配请layoutIfNeed
-        _alertView.center = self.view.center;
-        // 切圆角
-        _alertView.layer.masksToBounds = YES;
-        _alertView.layer.cornerRadius = 10;
-        // 初始状态为隐藏,透明度为0
-        _alertView.hidden = YES;
-        _alertView.alpha = 0.0;
-        // 设置代理
-        [CustomAlertView singleClass].delegate = self;
-    }
-    return _alertView;
+/** 播放方法 */
+- (void)playWithUrl:(NSURL *)url{
+    // 传入地址
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+    // 播放器
+    AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+    // 播放器layer
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    playerLayer.frame = self.imageView.frame;
+    // 视频填充模式
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+    // 添加到imageview的layer上
+    [self.imageView.layer addSublayer:playerLayer];
+    // 隐藏提示框 开始播放
+    [MBProgressHUD hideHUD];
+    [MBProgressHUD showSuccess:@"合成完成"];
+    // 播放
+    [player play];
 }
-
-// 代理方法传值
-- (void)didSelectAlertButton:(NSString *)title{
-    [UIView animateWithDuration:0.1 animations:^{
-        self.alertView.alpha = 0;
-    } completion:^(BOOL finished) {
-        // 如果直接在动画里隐藏不会出现动画效果,所以要在动画结束之后进行隐藏
-        self.alertView.hidden = YES;
-    }];
-    NSLog(@"%@",title);
-}
-
-@end
+```
+##MBP是一个第三方提示类,如果不关心这个功能可以删除这三行代码和头文件
+```
+// mbp提示框
+    [MBProgressHUD showMessage:@"正在处理中"];
+// 隐藏提示框 开始播放
+    [MBProgressHUD hideHUD];
+    [MBProgressHUD showSuccess:@"合成完成"];
 ```
 
-##来张效果图
-![这里写图片描述](http://img.blog.csdn.net/20151202171648644)
 
-##以上就是本功能的全部代码
+#效果图
+###因为是gif..请自己yy出Uber视频配上五环之歌(我感觉还挺配的)
 
-##GitHub:https://github.com/Lafree317/customAlertView
+![这里写图片描述](http://img.blog.csdn.net/20151203134052917)
 
-
-
+##GitHub:https://github.com/Lafree317/MergeVideoAndMusic
 ---
 本人还是一只小菜鸡,不过是一只热心肠的菜鸡,如果有需要帮助或者代码中有更好的建议的话可以发邮件到lafree317@163.com中,我们一起进步XD
-
 
