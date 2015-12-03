@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52F9CE6F1C0FCE4D00858C7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CE6E1C0FCE4D00858C7C /* main.m */; };
+		52F9CE721C0FCE4D00858C7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CE711C0FCE4D00858C7C /* AppDelegate.m */; };
+		52F9CE751C0FCE4D00858C7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CE741C0FCE4D00858C7C /* ViewController.m */; };
+		52F9CE781C0FCE4D00858C7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE761C0FCE4D00858C7C /* Main.storyboard */; };
+		52F9CE7A1C0FCE4D00858C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE791C0FCE4D00858C7C /* Assets.xcassets */; };
+		52F9CE7D1C0FCE4D00858C7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE7B1C0FCE4D00858C7C /* LaunchScreen.storyboard */; };
+		52F9CE851C0FD29500858C7C /* 五环之歌.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE841C0FD29500858C7C /* 五环之歌.mp3 */; };
+		52F9CE881C0FEF6900858C7C /* myPlayer.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE871C0FEF6900858C7C /* myPlayer.mp4 */; };
+		52F9CE8F1C1009D400858C7C /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CE8B1C1009D400858C7C /* MBProgressHUD+MJ.m */; };
+		52F9CE901C1009D400858C7C /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 52F9CE8C1C1009D400858C7C /* MBProgressHUD.bundle */; };
+		52F9CE911C1009D400858C7C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CE8E1C1009D400858C7C /* MBProgressHUD.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		52F9CE6A1C0FCE4D00858C7C /* MergeVideoAndMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MergeVideoAndMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F9CE6E1C0FCE4D00858C7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52F9CE701C0FCE4D00858C7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		52F9CE711C0FCE4D00858C7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		52F9CE731C0FCE4D00858C7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		52F9CE741C0FCE4D00858C7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		52F9CE771C0FCE4D00858C7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52F9CE791C0FCE4D00858C7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52F9CE7C1C0FCE4D00858C7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		52F9CE7E1C0FCE4D00858C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52F9CE841C0FD29500858C7C /* 五环之歌.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "五环之歌.mp3"; sourceTree = "<group>"; };
+		52F9CE871C0FEF6900858C7C /* myPlayer.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = myPlayer.mp4; sourceTree = "<group>"; };
+		52F9CE8A1C1009D400858C7C /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		52F9CE8B1C1009D400858C7C /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		52F9CE8C1C1009D400858C7C /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		52F9CE8D1C1009D400858C7C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		52F9CE8E1C1009D400858C7C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52F9CE671C0FCE4D00858C7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52F9CE611C0FCE4D00858C7C = {
+			isa = PBXGroup;
+			children = (
+				52F9CE6C1C0FCE4D00858C7C /* MergeVideoAndMusic */,
+				52F9CE6B1C0FCE4D00858C7C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52F9CE6B1C0FCE4D00858C7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52F9CE6A1C0FCE4D00858C7C /* MergeVideoAndMusic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52F9CE6C1C0FCE4D00858C7C /* MergeVideoAndMusic */ = {
+			isa = PBXGroup;
+			children = (
+				52F9CE891C1009D400858C7C /* MBProgressHUD */,
+				52F9CE871C0FEF6900858C7C /* myPlayer.mp4 */,
+				52F9CE841C0FD29500858C7C /* 五环之歌.mp3 */,
+				52F9CE731C0FCE4D00858C7C /* ViewController.h */,
+				52F9CE741C0FCE4D00858C7C /* ViewController.m */,
+				52F9CE761C0FCE4D00858C7C /* Main.storyboard */,
+				52F9CE6D1C0FCE4D00858C7C /* Supporting Files */,
+			);
+			path = MergeVideoAndMusic;
+			sourceTree = "<group>";
+		};
+		52F9CE6D1C0FCE4D00858C7C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52F9CE791C0FCE4D00858C7C /* Assets.xcassets */,
+				52F9CE701C0FCE4D00858C7C /* AppDelegate.h */,
+				52F9CE711C0FCE4D00858C7C /* AppDelegate.m */,
+				52F9CE7B1C0FCE4D00858C7C /* LaunchScreen.storyboard */,
+				52F9CE7E1C0FCE4D00858C7C /* Info.plist */,
+				52F9CE6E1C0FCE4D00858C7C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52F9CE891C1009D400858C7C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				52F9CE8A1C1009D400858C7C /* MBProgressHUD+MJ.h */,
+				52F9CE8B1C1009D400858C7C /* MBProgressHUD+MJ.m */,
+				52F9CE8C1C1009D400858C7C /* MBProgressHUD.bundle */,
+				52F9CE8D1C1009D400858C7C /* MBProgressHUD.h */,
+				52F9CE8E1C1009D400858C7C /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52F9CE691C0FCE4D00858C7C /* MergeVideoAndMusic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F9CE811C0FCE4D00858C7C /* Build configuration list for PBXNativeTarget "MergeVideoAndMusic" */;
+			buildPhases = (
+				52F9CE661C0FCE4D00858C7C /* Sources */,
+				52F9CE671C0FCE4D00858C7C /* Frameworks */,
+				52F9CE681C0FCE4D00858C7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MergeVideoAndMusic;
+			productName = MergeVideoAndMusic;
+			productReference = 52F9CE6A1C0FCE4D00858C7C /* MergeVideoAndMusic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52F9CE621C0FCE4D00858C7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = huchunyuan;
+				TargetAttributes = {
+					52F9CE691C0FCE4D00858C7C = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 52F9CE651C0FCE4D00858C7C /* Build configuration list for PBXProject "MergeVideoAndMusic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52F9CE611C0FCE4D00858C7C;
+			productRefGroup = 52F9CE6B1C0FCE4D00858C7C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52F9CE691C0FCE4D00858C7C /* MergeVideoAndMusic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52F9CE681C0FCE4D00858C7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52F9CE851C0FD29500858C7C /* 五环之歌.mp3 in Resources */,
+				52F9CE7D1C0FCE4D00858C7C /* LaunchScreen.storyboard in Resources */,
+				52F9CE881C0FEF6900858C7C /* myPlayer.mp4 in Resources */,
+				52F9CE7A1C0FCE4D00858C7C /* Assets.xcassets in Resources */,
+				52F9CE781C0FCE4D00858C7C /* Main.storyboard in Resources */,
+				52F9CE901C1009D400858C7C /* MBProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52F9CE661C0FCE4D00858C7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52F9CE8F1C1009D400858C7C /* MBProgressHUD+MJ.m in Sources */,
+				52F9CE751C0FCE4D00858C7C /* ViewController.m in Sources */,
+				52F9CE911C1009D400858C7C /* MBProgressHUD.m in Sources */,
+				52F9CE721C0FCE4D00858C7C /* AppDelegate.m in Sources */,
+				52F9CE6F1C0FCE4D00858C7C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		52F9CE761C0FCE4D00858C7C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52F9CE771C0FCE4D00858C7C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52F9CE7B1C0FCE4D00858C7C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52F9CE7C1C0FCE4D00858C7C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52F9CE7F1C0FCE4D00858C7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		52F9CE801C0FCE4D00858C7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52F9CE821C0FCE4D00858C7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MergeVideoAndMusic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = huchunyuan.MergeVideoAndMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		52F9CE831C0FCE4D00858C7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MergeVideoAndMusic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = huchunyuan.MergeVideoAndMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52F9CE651C0FCE4D00858C7C /* Build configuration list for PBXProject "MergeVideoAndMusic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F9CE7F1C0FCE4D00858C7C /* Debug */,
+				52F9CE801C0FCE4D00858C7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F9CE811C0FCE4D00858C7C /* Build configuration list for PBXNativeTarget "MergeVideoAndMusic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F9CE821C0FCE4D00858C7C /* Debug */,
+				52F9CE831C0FCE4D00858C7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52F9CE621C0FCE4D00858C7C /* Project object */;
+}
